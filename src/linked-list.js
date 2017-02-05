@@ -105,12 +105,22 @@ class LinkedList {
         let currentNode = this._head;
         while (i < this.length){ // search node with suitable index
             if( i === index) {
-                let prevNode = currentNode.prev;
-                let nextNode = currentNode.next;
+                if (currentNode == this._head){
+                    this._head = currentNode.next;
+                    this._head.prev = null;
+                    break;
+                } else if (currentNode == this._tail){
+                    this._tail = currentNode.prev;
+                    this._tail.next = null;
+                    break;
+                } else {
+                    let prevNode = currentNode.prev;
+                    let nextNode = currentNode.next;
 
-                prevNode.next = nextNode;
-                nextNode.prev = prevNode;
-                break;
+                    prevNode.next = nextNode;
+                    nextNode.prev = prevNode;
+                    break;
+                }
             }
             currentNode = currentNode.next;
             ++i;
