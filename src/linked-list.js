@@ -45,7 +45,16 @@ class LinkedList {
 
     // should return Node.data by index
     at(index) {
-
+        let i=0;
+        let currentNode = this._head;  // can start from tail of list
+        while(i < this.length){
+            if (i === index){
+                return currentNode.data;
+            }
+            currentNode = currentNode.next;
+            i++;
+        }
+        return null;
     }
 
     // should insert data by index
