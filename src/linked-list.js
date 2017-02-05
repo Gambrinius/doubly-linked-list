@@ -130,7 +130,24 @@ class LinkedList {
 
     // should reverse the list
     reverse() {
+        if(this.length > 1){
+            let headIndex = 0;
+            let tailIndex = this.length - 1;
+            let buf;
+            let headNode = this._head;
+            let tailNode = this._tail;
+            while (headIndex < tailIndex) { // while not middle of list
+                buf = headNode.data; // swap data from nodes
+                headNode.data = tailNode.data;
+                tailNode.data = buf;
 
+                headNode = headNode.next; // next node from head of list
+                tailNode = tailNode.prev; // next node from tail of list
+
+                headIndex++;
+                tailIndex--;
+            }
+        }
     }
 
     // should return index of element if data is found, otherwise -1
