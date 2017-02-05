@@ -45,7 +45,7 @@ class LinkedList {
 
     // should return Node.data by index
     at(index) {
-        let i=0;
+        let i = 0;
         let currentNode = this._head;  // can start from tail of list
         while(i < this.length){
             if (i === index){
@@ -59,7 +59,32 @@ class LinkedList {
 
     // should insert data by index
     insertAt(index, data) {
+        let i = 0;
+        let currentNode = this._head;
+        while (i < this.length){
+            if( i === index) { // search node with suitable index
+                break;
+            }
+            currentNode = currentNode.next;
+            ++i;
+        }
 
+       if (index == this.length){ // insert to tail
+            let newNode = new Node(data, this._tail, null); // prev = this._tail, next = null
+            this._tail.next = newNode;
+            this._tail = newNode;
+            this.length ++;
+       } else if (currentNode.prev == null){ // insert to head
+            let newNode = new Node(data, null, this._head); // prev = null, next = this._head
+            this._head.prev = newNode;
+            this._head = newNode;
+            this.length ++;
+       } else { // insert to nth index
+            let newNode = new Node(data, currentNode.prev, currentNode); // prev = currentNode.pre, next = currentNode
+            currentNode.prev.next = newNode; // prevNode.next pointer to newNode
+            currentNode.prev = newNode;
+            this.length ++;
+       }
     }
 
     // should return true if list is empty
@@ -76,7 +101,7 @@ class LinkedList {
 
     // should delete element by index
     deleteAt(index) {
-
+        //this.length --;
     }
 
     // should reverse the list
