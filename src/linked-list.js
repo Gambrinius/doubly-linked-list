@@ -86,7 +86,16 @@ class LinkedList {
 
     // should return index of element if data is found, otherwise -1
     indexOf(data) {
-
+        let index = this.length - 1;
+        let currentNode = this._tail;  // can start from head of list
+        while(index !== -1){
+            if (currentNode.data === data){
+                return index;
+            }
+            currentNode = currentNode.prev;
+            index--;
+        }
+        return -1;
     }
 }
 
