@@ -101,7 +101,21 @@ class LinkedList {
 
     // should delete element by index
     deleteAt(index) {
-        //this.length --;
+        let i = 0;
+        let currentNode = this._head;
+        while (i < this.length){ // search node with suitable index
+            if( i === index) {
+                let prevNode = currentNode.prev;
+                let nextNode = currentNode.next;
+
+                prevNode.next = nextNode;
+                nextNode.prev = prevNode;
+                break;
+            }
+            currentNode = currentNode.next;
+            ++i;
+        }
+        this.length --;
     }
 
     // should reverse the list
